@@ -17,29 +17,29 @@ if (type(tweet_sayisi) != int) or (tweet_sayisi < 1):
     print("Tweet sayisi pozitif tam sayı olmak zorundadır")
     exit()
 
-driver = webdriver.Chrome("D:/ceng111/pythonProject/chromedriver.exe")
+driver = webdriver.Chrome(".../chromedriver.exe")
 url = "https://twitter.com/login"
 driver.get(url)
-time.sleep(10)
+time.sleep(5)
 
 driver.maximize_window()
-time.sleep(10)
+time.sleep(5)
 
 giris = driver.find_element(By.XPATH,"//input[@autocomplete='username']")
 giris.send_keys(kullanici_adi)
-time.sleep(10)
+time.sleep(5)
 giris.send_keys(Keys.ENTER)
-time.sleep(10)
+time.sleep(5)
 
 sifre = driver.find_element(By.XPATH,"//input[@autocomplete='current-password']")
 sifre.send_keys(kullanici_sifresi)
-time.sleep(10)
+time.sleep(5)
 sifre.send_keys(Keys.ENTER)
-time.sleep(10)
+time.sleep(5)
 
 url2 = "https://twitter.com/search?q=%23{}&src=typed_query&f=live".format(hedef)
 driver.get(url2)
-time.sleep(10)
+time.sleep(5)
 
 bilgi = []
 profil = driver.find_elements(By.CSS_SELECTOR,".css-1dbjc4n.r-1iusvr4.r-16y2uox.r-1777fci.r-kzbkwu")
@@ -67,7 +67,7 @@ total = 0
 takipci_sayisi = []
 for username in kisi_adi:
     driver.get(f"https://twitter.com/{username[1:]}")
-    time.sleep(10)
+    time.sleep(5)
     temp = driver.find_element(By.XPATH,"//*[@id='react-root']/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/div/div/div[5]/div[2]").find_element(By.CSS_SELECTOR,".css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0")
     temp = temp.text
     parts = temp.replace(",", ".").split(" ")
